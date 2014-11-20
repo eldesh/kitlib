@@ -1,0 +1,8 @@
+group
+is
+  $/basis.cm
+  ../base/base.cm
+  finmap_impl.cm
+  IntFinMapPT.sml
+  OrderFinMap.sml
+  StringFinMap.sml

@@ -1,0 +1,4 @@
+group
+is
+  $/basis.cm
+  (* SML/NJ's basis includes SML90 *)

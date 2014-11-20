@@ -1,0 +1,5 @@
+group
+is
+  $/basis.cm
+  POLYHASH.sig
+  Polyhash.sml

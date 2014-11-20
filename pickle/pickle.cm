@@ -1,0 +1,9 @@
+group
+is
+  $/basis.cm
+  eqhashdyn2.sml
+  bitstream.sig
+  bitstream.sml
+  pickle.sig
+  ../hashtable/hashtable.cm
+  pickle.sml
