@@ -1,0 +1,5 @@
+group
+is
+  $/basis.cm
+  ../finmap.cm
+  finmap_pt.sml

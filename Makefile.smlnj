@@ -1,0 +1,52 @@
+SMLNJ ?= sml
+NJ_SUFFIX:=$(shell echo "TextIO.output(TextIO.stdOut, SMLofNJ.SysInfo.getHeapSuffix()^\"\n\");" \
+			| $(SMLNJ) | head -n 5 | tail -n 1)
+TEST_CMS :=$(shell ls -1 */test/*.cm)
+TEST_RESS:=$(TEST_CMS:%.cm=%.res)
+TEST_HEAP:=$(foreach cm, $(TEST_CMS), $(basename $(notdir $(cm))).$(NJ_SUFFIX))
+
+.PHONY: all
+all:
+	@echo "Supported make targets are:"
+	@echo "  1) make test    - execute unit tests"
+	@echo "  2) make doc     - generate sigdoc documentation"
+	@echo "  3) make clean   - remove generated files"
+	@echo "  4) make kitlib  - build library"
+
+
+kitlib.$(NJ_SUFFIX): kitlib.cm
+	@echo "CM.make \"kitlib.cm\";" | sml
+
+.PHONY: kitlib
+kitlib: kitlib.$(NJ_SUFFIX)
+
+.PHONY: test
+test: $(TEST_RESS)
+	@cat $(TEST_RESS)
+
+.PHONY: doc
+doc:
+	make -C doc
+
+.PHONY: clean
+clean:
+	find . -name '.cm' -type d | xargs rm -rf
+	find . -name '*.out' | xargs rm -f
+	find . -name '*.res' | xargs rm -f
+	rm -rf $(TEST_HEAP)
+	rm -rf doc/gen
+
+%.out: %.$(NJ_SUFFIX)
+	@echo "[LOG] $@: $<"
+	sml @SMLload=$(notdir $<) > $@
+
+%.$(NJ_SUFFIX): %.cm
+	@echo "[LOG] $@: $<"
+	ml-build $<
+
+%.res: %.out
+	@echo "[LOG] $@: $<"
+	@[[ `diff $< $<.ok` ]] && \
+           (echo "Test $@: ***ERR***" > $@) || \
+           (echo "Test $@: OK" > $@)
+

@@ -1,0 +1,7 @@
+group
+is
+  $/basis.cm
+  ../../random/random.cm
+  ../../listsort/listsort.cm
+  ../../utest/utest.cm
+  listsort.sml

@@ -1,0 +1,5 @@
+group
+is
+  $/basis.cm
+  ../pickle.cm
+  pickletest.sml
