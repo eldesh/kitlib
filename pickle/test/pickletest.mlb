@@ -1,3 +1,4 @@
 $(SML_LIB)/basis/basis.mlb
 ../pickle.mlb
 pickletest.sml
+test_main.sml

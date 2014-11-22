@@ -1,6 +1,8 @@
 
 
-structure TestIntFinMap : sig end =
+structure Test : sig
+  val main : string * string list -> OS.Process.status
+end =
   struct  
     structure IFM = IntFinMap
     fun member [] e = false
@@ -27,37 +29,42 @@ structure TestIntFinMap : sig end =
     fun test s true = print ("OK : " ^ s ^ "\n")
       | test s false = print ("ERROR : " ^ s ^ "\n")
 
-    val test1 = test "test1" (IFM.list(m3) === IFM.list(IFM.fromList(l1@l2)))
-      
-    val test2 = test "test2" (IFM.lookup m1 6 = SOME "6")
-    val test3 = test "test3" (IFM.lookup m1 9 = NONE)
+    fun main (_,_) =
+      let
+        val test1 = test "test1" (IFM.list(m3) === IFM.list(IFM.fromList(l1@l2)))
 
-    val test4 = test "test4" (IFM.lookup m3 4356 = SOME "4356'")
+        val test2 = test "test2" (IFM.lookup m1 6 = SOME "6")
+        val test3 = test "test3" (IFM.lookup m1 9 = NONE)
 
-    val test5 = test "test5" (IFM.lookup m3 35 = SOME "35")
+        val test4 = test "test4" (IFM.lookup m3 4356 = SOME "4356'")
 
-    val m4 = IFM.restrict (Int.toString, m3, [6,345,23,34,657,47])
+        val test5 = test "test5" (IFM.lookup m3 35 = SOME "35")
 
-    val test6 = test "test6" (IFM.lookup m4 23 = SOME "23'")
-    val test6 = test "test6" (IFM.lookup m4 657 = SOME "657")
-    val test7 = test "test7" (IFM.lookup m4 35 = NONE)
-    val test8 = test "test8" (IFM.lookup m4 78 = NONE)
+        val m4 = IFM.restrict (Int.toString, m3, [6,345,23,34,657,47])
 
-    val test9 = test "test9" ((IFM.restrict (Int.toString,m1,[43]); false) handle IFM.Restrict _ => true)
+        val test6 = test "test6" (IFM.lookup m4 23 = SOME "23'")
+        val test6 = test "test6" (IFM.lookup m4 657 = SOME "657")
+        val test7 = test "test7" (IFM.lookup m4 35 = NONE)
+        val test8 = test "test8" (IFM.lookup m4 78 = NONE)
 
-    fun sum [] = 0
-      | sum (x::xs) = x + sum xs
-      
-    fun remdubs ([],a:int list) = a
-      | remdubs (x::xs,a) = remdubs(xs, if member a x then a else x::a)
+        val test9 = test "test9" ((IFM.restrict (Int.toString,m1,[43]); false) handle IFM.Restrict _ => true)
 
-    val test10 = test "test10" (sum (IFM.dom m1) = sum (remdubs (map #1 l1,[])))
+        fun sum [] = 0
+          | sum (x::xs) = x + sum xs
 
-    val test11 = test "test11" (IFM.lookup (IFM.add(2222,"2222''",m1)) 2222 = SOME "2222''")
-    val test12 = test "test12" (IFM.lookup (IFM.add(234,"234''",m1)) 234 = SOME "234''")
+        fun remdubs ([],a:int list) = a
+          | remdubs (x::xs,a) = remdubs(xs, if member a x then a else x::a)
 
-(*
-    val st = IFM.layoutMap {start="{",finish="}", eq=" -> ", sep=", "} (PP.LEAF o Int.toString) PP.LEAF m3
-    val _ = PP.outputTree(print, st, 100)
-*)
+        val test10 = test "test10" (sum (IFM.dom m1) = sum (remdubs (map #1 l1,[])))
+
+        val test11 = test "test11" (IFM.lookup (IFM.add(2222,"2222''",m1)) 2222 = SOME "2222''")
+        val test12 = test "test12" (IFM.lookup (IFM.add(234,"234''",m1)) 234 = SOME "234''")
+
+    (*
+        val st = IFM.layoutMap {start="{",finish="}", eq=" -> ", sep=", "} (PP.LEAF o Int.toString) PP.LEAF m3
+        val _ = PP.outputTree(print, st, 100)
+    *)
+      in
+        OS.Process.success
+      end
   end

@@ -4,4 +4,5 @@ local
    ../../listsort/listsort.mlb
    ../../utest/utest.mlb
 in listsort.sml
+   test_main.sml
 end

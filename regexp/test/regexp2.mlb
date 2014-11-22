@@ -1,4 +1,5 @@
 local $(SML_LIB)/basis/basis.mlb
       ../regexp.mlb
 in regexp2.sml
+   test_main2.sml
 end
