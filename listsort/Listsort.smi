@@ -1,0 +1,9 @@
+_require "basis.smi"
+_require "LISTSORT.sig"
+
+structure Listsort (* : LISTSORT *) =
+struct
+  val sort   : ('a * 'a -> order) -> 'a list -> 'a list
+  val sorted : ('a * 'a -> order) -> 'a list -> bool
+end
+

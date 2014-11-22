@@ -1,0 +1,6 @@
+include "base/base.smi"
+include "set_impl.smi"
+include "IntSet.smi"
+include "NatSet.smi"
+include "OrderSet.smi"
+include "StringSet.smi"

@@ -1,0 +1,10 @@
+_require "basis.smi"
+_require "SUSP.sig"
+
+structure Susp =
+struct
+  type 'a susp (= boxed)
+  val delay : (unit -> 'a) -> 'a susp
+  val force : 'a susp -> 'a
+end
+

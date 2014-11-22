@@ -1,0 +1,49 @@
+_require "basis.smi"
+_require "SML90.sig"
+
+structure SML90 (* : SML90 *) =
+struct
+  val sqrt    : real -> real          (* Math *)
+  val sin     : real -> real
+  val cos     : real -> real
+  val arctan  : real -> real
+  val exp     : real -> real
+  val ln      : real -> real
+
+  val chr     : int -> string         (* Strings *)
+  val ord     : string -> int
+  val explode : string -> string list
+  val implode : string list -> string
+                                   
+  exception Abs   = General.Overflow
+  exception Diff  = General.Overflow
+  exception Exp   = General.Overflow
+  exception Floor = General.Overflow
+  exception Neg   = General.Overflow
+  exception Prod  = General.Overflow
+  exception Sum   = General.Overflow
+
+  exception Mod   = General.Div
+  exception Quot  = General.Overflow
+  exception Sqrt
+  exception Ln
+  exception Ord
+  exception Io of string 
+
+  exception Interrupt
+
+  type instream = TextIO.instream 
+  type outstream = TextIO.outstream
+
+  val std_in        : instream
+  val open_in       : string -> instream
+  val input         : instream * int -> string
+  val lookahead     : instream -> string
+  val close_in      : instream -> unit
+  val end_of_stream : instream -> bool
+  val std_out       : outstream
+  val open_out      : string -> outstream
+  val output        : outstream * string -> unit
+  val close_out     : outstream -> unit
+end
+

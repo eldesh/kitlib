@@ -1,0 +1,14 @@
+_require "basis.smi"
+_require "RANDOM.sig"
+
+structure Random (* : RANDOM *) =
+struct
+  type generator = {seedref : real ref}
+  val newgenseed : real -> generator
+  val newgen     : unit -> generator
+  val random     : generator -> real
+  val randomlist : int * generator -> real list
+  val range      : int * int -> generator -> int
+  val rangelist  : int * int -> int * generator -> int list
+end
+

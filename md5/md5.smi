@@ -1,0 +1,15 @@
+_require "basis.smi"
+_require "basis/PackWord32Little.smi"
+_require "md5.sig"
+
+structure MD5 (* :> MD5 *) =
+struct
+  type md5state (= boxed)
+  val init        : md5state
+  val update      : (md5state * Word8Vector.vector) -> md5state
+  val final       : md5state -> Word8Vector.vector
+  val toHexString : Word8Vector.vector -> string
+  val fromString  : string -> string
+  val fromFile    : string -> string
+end
+

@@ -1,0 +1,11 @@
+_require "basis.smi"
+
+structure EqHashDyn (* :> EQ_HASH_DYN *) =
+struct
+  type dyn (= boxed)
+  val new  : ('a -> int -> word) -> ('a * 'a -> bool) 
+                 -> ('a -> dyn) * (dyn -> 'a)
+  val eq   : dyn * dyn -> bool
+  val hash : int -> dyn -> word 
+end
+

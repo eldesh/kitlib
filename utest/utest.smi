@@ -1,0 +1,20 @@
+_require "basis.smi"
+_require "utest.sig"
+
+structure Utest (* : UTEST *) =
+struct
+  val tstStart   : string -> unit
+  val tstEnd     : unit -> unit
+
+  val range      : int * int -> (int -> bool) -> bool
+
+  val check      : bool -> string
+  val check'     : (unit -> bool) -> string
+  val checkrange : int * int -> (int -> bool) -> string
+
+  val tst0       : string -> string -> unit
+  val tst        : string -> bool -> unit
+  val tst'       : string -> (unit -> bool) -> unit
+  val tstrange   : string -> int * int -> (int -> bool) -> unit
+end
+

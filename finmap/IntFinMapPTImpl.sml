@@ -15,6 +15,7 @@ signature INT_FINMAP_PT_IMPL =
 	sharing type Impl.map = map
     end
 
+
 structure IntFinMapPTImpl :> INT_FINMAP_PT_IMPL =
 struct  
   type dom = int

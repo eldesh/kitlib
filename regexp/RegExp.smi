@@ -1,0 +1,13 @@
+_require "basis.smi"
+_require "REG_EXP.sig"
+_require "set/IntSet.smi"
+_require "finmap/IntFinMapPT.smi"
+
+structure RegExp (* :> REG_EXP *) =
+struct
+  type regexp (= boxed)
+  val fromString : string -> regexp 
+  val match      : regexp -> string -> bool
+  val extract    : regexp -> string -> string list option
+end
+

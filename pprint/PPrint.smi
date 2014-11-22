@@ -1,0 +1,27 @@
+_require "basis.smi"
+_require "PPRINT.sig"
+
+structure PPrint (* :> PPRINT *) =
+struct
+  datatype sep = NOSEP | LEFT of string | RIGHT of string
+
+  datatype doc = LEAF of string
+               | NODE of {start : string, finish: string, indent: int,
+                          children: doc list,
+                          childsep: sep}
+               | HNODE of {start : string, finish: string, 
+                           children: doc list,
+                           childsep: sep}
+
+  val layout_opt      : ('a -> doc) -> 'a option -> doc
+  val layout_pair     : ('a -> doc) -> ('b -> doc) -> 'a * 'b -> doc
+  val layout_list     : ('a -> doc) -> 'a list -> doc
+  val layout_together : int -> doc list -> doc
+
+  val flatten1        : doc -> string
+
+  val outputDoc'      : (int -> string) -> (string -> unit) -> bool * int -> doc -> unit
+  val outputDoc       : (string -> unit) -> bool * int -> doc -> unit
+  val printDoc        : bool * int -> doc -> unit
+end
+

@@ -1,0 +1,33 @@
+_require "basis.smi"
+_require "MONO_FINMAP.sig"
+_require "IntFinMapPTImpl.smi"
+
+structure IntFinMap =
+struct
+  type dom = int
+  type 'b map (= boxed)
+          
+  val empty      : 'b map
+  val singleton  : dom * 'b -> 'b map
+  val isEmpty    : 'b map -> bool
+  val lookup     : 'b map -> dom -> 'b option
+  val add        : dom * 'b * 'b map -> 'b map
+  val plus       : 'b map * 'b map -> 'b map
+  val remove     : dom * 'b map -> 'b map option      
+  val dom        : 'b map -> dom list
+  val range      : 'b map -> 'b list
+  val list       : 'b map -> (dom * 'b) list
+  val fromList   : (dom * 'b) list -> 'b map
+  val composemap : ('b -> 'c) -> 'b map -> 'c map
+  val ComposeMap : (dom * 'b -> 'c) -> 'b map -> 'c map
+  val fold       : (('a * 'b) -> 'b) -> 'b -> 'a map -> 'b
+  val Fold       : (((dom * 'b) * 'c) -> 'c)-> 'c -> 'b map -> 'c
+  val filter     : (dom * 'b -> bool) -> 'b map -> 'b map
+  val addList    : (dom * 'b) list -> 'b map -> 'b map
+  val mergeMap   : (('b * 'b) -> 'b) -> 'b map -> 'b map -> 'b map
+
+  exception Restrict = IntFinMapPTImpl.Restrict
+  val restrict   : (dom -> string) * 'b map * dom list -> 'b map
+  val enrich     : ('b * 'b -> bool) -> ('b map * 'b map) -> bool
+end
+

@@ -1,0 +1,26 @@
+
+SUBDIR = finmap \
+		 hashtable \
+		 listsort \
+		 md5 \
+		 pickle \
+		 pprint \
+		 random \
+		 regexp \
+		 set \
+		 sml90 \
+		 susp \
+		 uref \
+		 utest
+
+all:
+	for dir in $(SUBDIR); do \
+		make -C $$dir ; \
+	done
+
+.PHONY: clean
+clean:
+	for dir in $(SUBDIR); do \
+		make -C $$dir $@; \
+	done
+

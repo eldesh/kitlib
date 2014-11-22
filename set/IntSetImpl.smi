@@ -1,0 +1,37 @@
+_require "basis.smi"
+_require "MONO_SET.sig"
+
+structure IntSetImpl (* :> INT_SET_IMPL *) =
+struct
+  (* MONO_SET *)
+  type elem = int
+  type set (= boxed)
+
+  structure Impl =
+  struct
+  	datatype bal = L | B | R 
+    type set = set
+  end 
+
+  val empty      : set
+  val singleton  : elem -> set
+  val size       : set -> int
+  val isEmpty    : set -> bool
+  val member     : set * elem -> bool
+  val eq         : set * set -> bool
+  val list       : set -> elem list
+  val fromList   : elem list -> set
+  val addList    : set * elem list -> set
+  val insert     : set * elem -> set
+  val remove     : set * elem -> set
+  val difference : set * set -> set
+  val intersect  : set * set -> set
+  val union      : set * set -> set
+  val partition  : (elem -> bool) -> set -> set * set
+  val subst      : set * elem * elem -> set
+  val fold       : (elem * 'b -> 'b) -> 'b -> set -> 'b
+  val map        : (elem -> elem) -> set -> set
+  val app        : (elem -> unit) -> set -> unit
+
+end
+

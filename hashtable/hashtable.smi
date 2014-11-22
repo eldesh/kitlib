@@ -1,0 +1,3 @@
+include "POLYHASH.sig"
+include "Polyhash.smi"
+
