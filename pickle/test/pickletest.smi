@@ -1,0 +1,9 @@
+_require "basis.smi"
+_require "pickle.smi"
+
+structure Test =
+struct
+  val main : string * string list -> OS.Process.status
+end
+
+

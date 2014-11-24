@@ -1,0 +1,8 @@
+_require "basis.smi"
+_require "finmap.smi"
+
+structure Test =
+struct
+  val main : string * string list -> OS.Process.status
+end
+

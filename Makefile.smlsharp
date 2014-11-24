@@ -13,9 +13,23 @@ SUBDIR = finmap \
 		 uref \
 		 utest
 
-all:
+TESTDIR = finmap \
+		  listsort \
+		  pickle \
+		  regexp
+
+all: lib
+
+
+lib:
 	for dir in $(SUBDIR); do \
 		make -C $$dir ; \
+	done
+
+.PHONY: test
+test: lib
+	for dir in $(TESTDIR); do \
+		make -C $$dir test ; \
 	done
 
 .PHONY: clean

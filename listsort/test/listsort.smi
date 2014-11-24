@@ -1,0 +1,11 @@
+_require "basis.smi"
+_require "random/random.smi"
+_require "listsort/listsort.smi"
+_require "utest/utest.smi"
+
+structure Test =
+struct
+  val main : string * string list -> OS.Process.status
+end
+
+
