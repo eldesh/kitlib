@@ -18,7 +18,11 @@ kitlib.$(NJ_SUFFIX): kitlib.cm
 	@echo "CM.make \"kitlib.cm\";" | sml
 
 .PHONY: kitlib
-kitlib: kitlib.$(NJ_SUFFIX)
+kitlib:
+	@echo 'CM.stabilize true "kitlib.cm";' | sml
+	@echo "To install kitlib for SML/NJ, "
+	@echo "register path to the .cm/ directory to pathconfig"
+
 
 .PHONY: test
 test: $(TEST_RESS)
