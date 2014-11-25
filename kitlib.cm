@@ -1,18 +1,20 @@
-group
+library
+  source(public.sml)
 is
-   $/basis.cm
-   base/base.cm
-   finmap/finmap.cm
-   hashtable/hashtable.cm
-   listsort/listsort.cm
-   md5/md5.cm
-   pickle/pickle.cm
-   pprint/pprint.cm
-   random/random.cm
-   regexp/regexp.cm
-   set/set.cm
-   sml90/sml90.cm
-   susp/susp.cm
-   uref/uref.cm
-   utest/utest.cm
+  $/basis.cm
+  base/base.cm
+  finmap/finmap.cm
+  hashtable/hashtable.cm
+  listsort/listsort.cm
+  md5/md5.cm
+  pickle/pickle.cm
+  pprint/pprint.cm
+  random/random.cm
+  regexp/regexp.cm
+  set/set.cm
+  sml90/sml90.cm
+  susp/susp.cm
+  uref/uref.cm
+  utest/utest.cm
+  public.sml
 
